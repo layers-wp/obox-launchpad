@@ -1,0 +1,29 @@
+/*
+Site Name: Launchpad
+Version: Sans Serif - Serif Font Style
+Author: Obox
+Author URI: http://www.obox-design.com/
+*/
+
+
+/*-------------------------------------------------*/
+/*- SETUP STD CLASSES -----------------------------*/
+/*-------------------------------------------------*/
+body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+h1, h2, h3, h4, h4, .timer{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+
+/*********************/
+/*--- INPUTS --------*/
+textarea, input{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+		
+/*************************/
+/*--- FORMS -------------*/
+fieldset small{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+
+/********************/
+/*- COPY -----------*/
+.copy, .copy a, small{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}

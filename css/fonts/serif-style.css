@@ -1,0 +1,29 @@
+/*
+Site Name: Launchpad
+Version: Serif Font Style
+Author: Obox
+Author URI: http://www.obox-design.com/
+*/
+
+
+/*-------------------------------------------------*/
+/*- SETUP STD CLASSES -----------------------------*/
+/*-------------------------------------------------*/
+body{font-family: Georgia, "Times New Roman", Times, serif;}
+
+h1, h2, h3, h4, h4, .timer li{font-family: Georgia, "Times New Roman", Times, serif !important;}
+
+
+/*********************/
+/*--- INPUTS --------*/
+textarea, input{font-family: Georgia, "Times New Roman", Times, serif; }
+
+		
+/*************************/
+/*--- FORMS -------------*/
+fieldset small{font-family: Georgia, "Times New Roman", Times, serif; }
+
+
+/********************/
+/*- COPY -----------*/
+.copy, .copy a{font-family: Georgia, "Times New Roman", Times, serif; }
