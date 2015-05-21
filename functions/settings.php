@@ -401,6 +401,8 @@
 		endforeach;
 		$input .= '</ul>';
 
+		$inactive = '';
+
 		if(!empty($options) && $options != "") :
 			foreach($defaults as $name => $function) :
 				if(!in_array($function, $args))
