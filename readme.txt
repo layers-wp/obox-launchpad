@@ -3,11 +3,11 @@ Contributors: obox
 Tags: maintenance mode, landing page, splash screen
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-From the makers of Layers, Launchpad is a 100% free and feature-packed holding page plugin.
+From the makers of Layers, Launchpad by Obox is the best looking holding page for your WordPress site. Great for “coming soon”, “down for maintenance” or launch pages.
 
 == Description ==
 
@@ -101,6 +101,12 @@ Yep, you can even set the security levels of who can view the front end while lo
 3. Control the look and feel
 
 == Changelog ==
+
+= 1.0.6 =
+* Fixed any base file warnings
+* Added link to Layers to help users create a site easily
+* Fixed checkbox layouts in the admin
+* Updated field defaults
 
 = 1.0.5 =
 * Fixed all JS errors including the date picker, logo uploader and drag & drop for the page elements order
