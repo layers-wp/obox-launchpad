@@ -70,11 +70,9 @@
 				<p>Setting up a new site? Why not try Layers? A revolutionary site builder specifically for WordPress.</p>
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/lRogY6qKBvQ" frameborder="0" allowfullscreen></iframe>
 				<p>
-					Layers is a revolutionary new site builder that makes creating beautiful, responsive websites, fast, fun and easy.
+					<a href="http://www.layerswp.com/" target="_blank">Layers</a> is a revolutionary new site builder that makes creating beautiful, responsive websites, fast, fun and easy.
 				</p>
-				<p class="go-to-layers">
-					<a href="http://www.layerswp.com/" target="_blank">Find out more</a>
-				</p>
+				<a class="go-to-layers" href="http://www.layerswp.com/" target="_blank">Find out more</a>
 			</div>
 
 			<div class="lp-settings-section">
