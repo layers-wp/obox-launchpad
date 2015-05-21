@@ -38,23 +38,23 @@
 		return $html;
 	}
 	function apollo_general_options_callback() {
-		echo '<p class="top">Activate your landing page, set the launch date and add your copy. Get started here!' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Activate your landing page, set the launch date and add your copy. Get started here!</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_social_options_callback() {
-		echo '<p class="top">Enter in your social network URLs. Leave blank to hide the buttons.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Enter in your social network URLs. Leave blank to hide the buttons.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_theme_options_callback() {
-		echo '<p class="top">Setup the look &amp; feel of your launch page.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Setup the look &amp; feel of your launch page.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_order_options_callback() {
-		echo '<p class="top">Dictate the order of the elements on the home page.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Dictate the order of the elements on the home page.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_css_options_callback() {
-		echo '<p class="top">If you want to fully cusomize your landing page, add your custom CSS here.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'If you want to fully cusomize your landing page, add your custom CSS here.</p>';
 	} // end apollo_general_options_callback
 
 
@@ -64,25 +64,35 @@
 		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'display'; ?>
 		<!-- Create a header in the default WordPress 'wrap' container -->
 		<div class="wrap">
-			<div id="icon-themes" class="icon32"></div>
-			<h2>Launchpad</h2>
-			<?php settings_errors(); ?>
-			<h2 class="nav-tab-wrapper">
-				<?php foreach($tabs as $tab => $label) : ?>
-					<a href="?page=apollo_general_settings&tab=<?php echo $tab; ?>" class="nav-tab <?php echo $active_tab == $tab ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
-				<?php endforeach; ?>
-			</h2>
-			<form method="post" action="options.php" enctype="multipart/form-data" class="launchpad-form">
-				<?php settings_fields('apollo_'.$active_tab.'_options'); ?>
-				<?php do_settings_sections( 'apollo_'.$active_tab.'_options' ); ?>
-				<p><?php echo $this->buttons(); ?></p>
-				<div class="promo-layers">
-					<h3>Try Layers</h3>
-					<p>Setting up a new site? Why not try Layers? </p>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/lRogY6qKBvQ" frameborder="0" allowfullscreen></iframe>
-					<p>Find out <a href="">more</a></p>
-				</div>
-			</form>
+
+			<div class="promo-layers">
+				<h4>Try Layers</h4>
+				<p>Setting up a new site? Why not try Layers? A revolutionary site builder specifically for WordPress.</p>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/lRogY6qKBvQ" frameborder="0" allowfullscreen></iframe>
+				<p>
+					Layers is a revolutionary new site builder that makes creating beautiful, responsive websites, fast, fun and easy.
+				</p>
+				<p class="go-to-layers">
+					<a href="http://www.layerswp.com/" target="_blank">Find out more</a>
+				</p>
+			</div>
+
+			<div class="lp-settings-section">
+
+				<h2>Launchpad</h2>
+				<?php settings_errors(); ?>
+				<h2 class="nav-tab-wrapper">
+					<?php foreach($tabs as $tab => $label) : ?>
+						<a href="?page=apollo_general_settings&tab=<?php echo $tab; ?>" class="nav-tab <?php echo $active_tab == $tab ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
+					<?php endforeach; ?>
+				</h2>
+
+				<form method="post" action="options.php" enctype="multipart/form-data" class="launchpad-form">
+					<?php do_settings_sections( 'apollo_'.$active_tab.'_options' ); ?>
+					<?php settings_fields('apollo_'.$active_tab.'_options'); ?>
+					<p><?php echo $this->buttons(); ?></p>
+				</form>
+			</div>
 
 		</div><!-- /.wrap -->
 	<?php
