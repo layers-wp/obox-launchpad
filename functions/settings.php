@@ -79,6 +79,8 @@
 				<div class="promo-layers">
 					<h3>Try Layers</h3>
 					<p>Setting up a new site? Why not try Layers? </p>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/lRogY6qKBvQ" frameborder="0" allowfullscreen></iframe>
+					<p>Find out <a href="">more</a></p>
 				</div>
 			</form>
 
