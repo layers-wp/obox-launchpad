@@ -88,11 +88,11 @@ p span{
 }
 .form-table td textarea{
     width: 100%;
-    max-width: 300px;
+    max-width: 450px;
     padding: 8px;
 }
 .form-table td #css{
-    width: 75%;
+    max-width: none;
     height: 450px;
     padding: 8px;
     font-family: "Consolas",Monaco,monospace;
