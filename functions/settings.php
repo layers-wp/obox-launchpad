@@ -406,7 +406,7 @@
 				if(!in_array($function, $args))
 					$inactive .= '<li><label for="' . $function . '">' . $name . '<input type="checkbox" id="' . $function . '" name="apollo_order_options[' . $name . ']" value="' . $function . '" /></label></li>';
 			endforeach;
-			if($inactive != "") :
+			if( isset( $inactive ) && $inactive != "") :
 				$input .= '<h2 class="home-page-order">In-active</h2>';
 				$input .= '<ul class="home-page-order">';
 				$input .= $inactive;
