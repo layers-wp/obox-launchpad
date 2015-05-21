@@ -8,7 +8,7 @@
 	Author URI: http://www.obox-design.com
 */
 
-define("LAUNCHPADDIR", ABSPATH."wp-content/plugins/launchpad-by-obox/");
+define("LAUNCHPADDIR",  plugin_dir_path( __FILE__ ) );
 
 // Kick off Plugin
 function apollo_includes(){

@@ -3,21 +3,24 @@ Contributors: obox
 Tags: maintenance mode, landing page, splash screen
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Launchpad is a free WordPress landing page plugin.
+From the makers of Layers, Launchpad by Obox is the best looking holding page for your WordPress site. Great for “coming soon”, “down for maintenance” or launch pages.
 
 == Description ==
 
-[Launchpad](http://www.obox-design.com/launchpad.cfm "The ultimate pre-launch landing page plugin") is a free, responsive landing page plugin for all WordPress users, by Obox Themes.
+From the makers of Layers, [Launchpad](http://www.oboxthemes.com/plugin/launchpad "The ultimate pre-launch landing page plugin") by Obox is the best looking holding page for your WordPress site. Great for “coming soon”, “down for maintenance” or launch pages.
+
+There is *no* premium version! Just great free features :)
 
 = What is Launchpad? =
-A WordPress plugin that allows you to setup a beautiful pre-launch landing page to let users know what you're launching and when you're launching it.
+
+A WordPress plugin that deploys a beautiful, responsive Coming Soon or Down for Maintenance page for your site. Collect emails, change styles, show social links and more.
 
 = How does it work? =
-Simply install the plugin on your WordPress site and then set your launch date and add some copy. There is also a huge feature set, see more below.
+Set your launch date, add your copy and go! Or customize and tweak to get the exact holding page you want before you launch your site.
 
 **Where can I use it?**
 Launchpad can be used with any WordPress install. As long as you have a site and as long as you have WordPress then Launchpad will work for you.
@@ -45,9 +48,6 @@ We have included eleven amazing backgrounds to can choose from, however if you d
 
 **Drag and Drop the layout**
 Use the drag and drop layout manager to determine how you want to organize your landing page elements. Move the timer to the top, logo to the bottom or video to the middle. It's really easy.
-
-**Responsive Design**
-A responsive/fluid layout means that users visiting your site will get the same awesome experience no matter what device they are using.
 
 **Take full control with custom css**
 Not satisfied with the default settings? No problem, add your own custom css via the settings area and turn the landing page into a truly unique destination for your new site.
@@ -82,15 +82,15 @@ Add links to your favorite social networks, including Twitter, Facebook, WordPre
 
 Yes you can, just make sure you are running WordPress 3.3 or higher.
 
-= Do I need an Obox theme to use this plugin? = 
+= Do I need an Obox theme to use this plugin? =
 
 Nope, it works on any type of WordPress install.
 
-= Can I hide the Obox badge at the bottom of the screen? = 
+= Can I hide the Obox badge at the bottom of the screen? =
 
 Yes, there is a checkbox in the General Settings area which allows you to hide the Obox badge.
 
-= Can I still view the front end of my site when I am logged in? = 
+= Can I still view the front end of my site when I am logged in? =
 
 Yep, you can even set the security levels of who can view the front end while logged in. This can be set in under the General settings tab.
 
@@ -101,6 +101,12 @@ Yep, you can even set the security levels of who can view the front end while lo
 3. Control the look and feel
 
 == Changelog ==
+
+= 1.0.6 =
+* Fixed any base file warnings
+* Added link to Layers to help users create a site easily
+* Fixed checkbox layouts in the admin
+* Updated field defaults
 
 = 1.0.5 =
 * Fixed all JS errors including the date picker, logo uploader and drag & drop for the page elements order
