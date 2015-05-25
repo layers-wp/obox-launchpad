@@ -1,11 +1,11 @@
 <?php
 /*
 	Plugin Name: Launchpad by Obox
-	Plugin URI: http://obox-design.com
-	Description: The best looking maintenance plugin on the net
+	Plugin URI: http://oboxthemes.com
+	Description: Deploys a beautiful, responsive Coming Soon or Down for Maintenance page for your site. Collect emails, change styles, show social links and more
 	Author: Obox Design
-	Version: 1.0.8
-	Author URI: http://www.obox-design.com
+	Version: 1.0.6
+	Author URI: http://oboxthemes.com
 */
 
 define("LAUNCHPADDIR",  plugin_dir_path( __FILE__ ) );

@@ -31,7 +31,7 @@
 			'Launchpad',
 			'administrator',
 			'apollo_general_settings', array(&$this, 'apollo_display'),
-			'http://obox-design.com/images/ocmx-favicon.png' );
+			'http://oboxthemes.com/images/ocmx-favicon.png' );
 	}
 
 	function buttons(){
