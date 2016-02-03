@@ -1,7 +1,7 @@
 <?php global $apollo_options;
-// if(isset($apollo_options["display_countdown"])) :
 	$launch = strtotime($apollo_options["launchdate"]);
-	$now = time();
+
+	$now = current_time('timestamp');
 	$countdown = apollo_return_date($now, $launch);
 ?>
     <ul class="timer">
@@ -22,4 +22,3 @@
             <small>Seconds</small>
         </li>
     </ul>
-<?php// endif; ?>

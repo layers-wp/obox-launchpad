@@ -1,10 +1,10 @@
 <?php
 /*
-	Plugin Name: Launchpad by Obox
+	Plugin Name: Launchpad - Coming Soon & Maintenance Mode Plugin
 	Plugin URI: http://oboxthemes.com
 	Description: Deploys a beautiful, responsive Coming Soon or Down for Maintenance page for your site. Collect emails, change styles, show social links and more
-	Author: Obox Design
-	Version: 1.0.6
+	Author: Obox Themes
+	Version: 1.0.9
 	Author URI: http://oboxthemes.com
 */
 

@@ -77,7 +77,7 @@
 		wp_enqueue_script( "jquery");
 
 		// Admin Scripts
-		if(is_admin()) :
+		if( is_admin() ) :
 			if(isset($_REQUEST['page']) && $_REQUEST['page'] == "apollo_general_settings") :
 				// Scripts
 				wp_enqueue_script( 'jquery-ui-core' );
@@ -106,14 +106,16 @@
 
 			endif;
 		// Front end scripts
-		else :
+		elseif( !( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) ) :
 			$apollo_options =  get_option("apollo_display_options");
 			wp_enqueue_script( "countdown-jquery", plugins_url("launchpad-by-obox/js/jquery.countdown.js"), array( "jquery" ) );
-			wp_enqueue_script( "apollo", plugins_url("launchpad-by-obox/js/jquery.apollo.js"), array( "jquery" ) );
-			$date = date("F d, Y G:i:s", strtotime($apollo_options["launchdate"]));
-			wp_localize_script( "apollo", "date", $date);
+ 			wp_enqueue_script( "apollo", plugins_url("launchpad-by-obox/js/jquery.apollo.js"), array( "jquery" ) );
+			$date_launch = date("F d, Y G:i:s", strtotime($apollo_options["launchdate"]));
+			$date_now = date("F d, Y G:i:s", current_time('timestamp') );
+			wp_localize_script( "apollo", "launchpad", array( 'date_launch' => $date_launch, 'date_now' => $date_now ) );
 		endif;
 	}
+
 	function admin_styles(){
 		global $pagenow;
 
@@ -121,7 +123,7 @@
 		wp_enqueue_script( "jquery");
 
 		// Admin Scripts
-		if(is_admin()) :
+		if( is_admin() ) :
 			if(isset($_REQUEST['page']) && $_REQUEST['page'] == "apollo_general_settings") :
 				// Styles
 				wp_register_style( 'apollo-admin', plugins_url("launchpad-by-obox/css/admin.css"));
@@ -138,6 +140,7 @@
 	}
 
 	function styles(){
+
 		$apollo_theme_options =  get_option("apollo_theme_options");
 		$apollo_css_options =  get_option("apollo_css_options");
 
@@ -149,7 +152,7 @@
 			wp_enqueue_style( 'apollo-fonts' );
 		endif;
 
-		if($apollo_css_options["css"] != "" || $apollo_theme_options["background"] != "") :
+		if($apollo_css_options["css"] != "" || ( isset( $apollo_theme_options["background"] ) && $apollo_theme_options["background"] != "" ) ) :
 			wp_register_style( 'apollo-custom', get_home_url() . '?style=custom');
 			wp_enqueue_style( 'apollo-custom' );
 		endif;
@@ -185,7 +188,7 @@
 			//Remove Admin bar for preview
 			add_filter('show_admin_bar', '__return_false');
 			return true;
-		elseif(isset($options["automatic_launch"]) && isset($options["launchdate"]) && strtotime($options["launchdate"]) < time()) :
+		elseif( isset( $options["automatic_launch"] ) && isset( $options["launchdate"] ) && (float) strtotime( $options["launchdate"] ) <=  (float) current_time('timestamp') ) :
 			return false;
 		elseif(isset($options["active"]) && strpos( $_SERVER['REQUEST_URI'], '/wp-admin' ) === false) :
 			if(!is_user_logged_in()) :
@@ -212,6 +215,7 @@
 				endif;
 			endif;
 		endif;
+
 	}
 
 	// The Kick Off!
@@ -226,7 +230,7 @@
 			add_action( 'template_redirect', array(&$this, 'custom_css'));
 
 			//Scripts
-			add_action( 'wp_print_scripts', array( &$this, 'scripts') );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'scripts') );
 			add_action( 'wp_print_styles', array( &$this, 'styles') );
 		endif;
 
@@ -234,7 +238,7 @@
 		add_filter( 'script_loader_src', array( &$this, 'remove_src_version') );
 		add_filter( 'style_loader_src', array( &$this, 'remove_src_version') );
 		add_action( 'admin_print_styles', array(&$this, 'admin_styles'));
-		add_action( 'admin_print_scripts', array(&$this, 'scripts'));
+		add_action( 'admin_enqueue_scripts', array(&$this, 'scripts'));
 		add_action( 'admin_bar_menu', array(&$this, 'active_warning'), 100);
 	}
 }
