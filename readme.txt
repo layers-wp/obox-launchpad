@@ -1,9 +1,9 @@
 === Launchpad - Coming Soon & Maintenance Mode Plugin ===
 Contributors: obox
 Tags: maintenance mode, landing page, splash screen
-Requires at least: 3.3
+Requires at least: 4.0
 Tested up to: 4.5.2
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,14 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 == Changelog ==
 
+= 1.0.11 =
+* Fixed the home page order selector
+* Fixed admin styling (radio buttons)
+* Updated admin HTML
+
+= 1.0.10 =
+* Added WooCommerce compatability
+
 = 1.0.9 =
 * Fixed the infinite loop bug which occured due to timezone settings in WordPress not matching the Javascript time
 * Ensured that Launchpad does not load its JS in the login screen
@@ -139,4 +147,3 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 = 1.0 =
 * Launchpad launched.
-

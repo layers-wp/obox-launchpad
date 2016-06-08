@@ -4,7 +4,7 @@
 	Plugin URI: http://oboxthemes.com
 	Description: Deploys a beautiful, responsive Coming Soon or Down for Maintenance page for your site. Collect emails, change styles, show social links and more
 	Author: Obox Themes
-	Version: 1.0.10
+	Version: 1.0.11
 	Author URI: http://oboxthemes.com
 */
 
