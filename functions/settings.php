@@ -494,41 +494,52 @@
 
 	}
 
-	function apollo_order( $args ){
+	function apollo_order( $order_options ){
 
-		$order = get_option("apollo_order_options");
+		$active_order = get_option("apollo_order_options");
 
-		$defaults = $args;
+		if( empty( $active_order ) ) $active_order = $order_options;
 
-		if( !empty($order) )
-			$args = $order;
+		$active = '';
+		$inactive = ''; ?>
 
-		$input = '<h2 class="home-page-order">Active</h2>';
-		$input .= '<ul class="home-page-order">';
-		foreach($args as $name => $function) :
-			$input .= '<li><label for="' . $function . '">' . $name . '<input type="checkbox" id="' . $function . '" name="apollo_order_options[' . $name . ']" checked="checked" value="' . $function . '" /></label></li>';
-		endforeach;
-		$input .= '</ul>';
+		<h2 class="home-page-order"><?php _e( 'Active', 'launchpad' ); ?></h2>
+		<ul class="home-page-order">
+			<?php foreach( $active_order as $value => $label ) :
 
-		$inactive = '';
+				if( array_key_exists( $value , $active_order ) ) : ?>
+					<li>
+						<label for="<?php echo esc_attr( $value ); ?>">
+							<?php echo $label; ?>
+							<input disabled type="checkbox" id="<?php echo esc_attr( $value ); ?>" name="apollo_order_options[<?php echo esc_attr( $value ); ?>]" checked="checked" value="<?php echo esc_attr( $label ); ?>" />
+						</label>
+					</li>
+				<?php endif;
 
-		if(!empty($options) && $options != "") :
-			foreach($defaults as $function => $name ) :
-				if(!in_array($function, $args))
-					$inactive .= '<li><label for="' . $function . '">' . $name . '<input type="checkbox" id="' . $function . '" name="apollo_order_options[' . $name . ']" value="' . $function . '" /></label></li>';
-			endforeach;
-			if( isset( $inactive ) && $inactive != "") :
-				$input .= '<h2 class="home-page-order">In-active</h2>';
-				$input .= '<ul class="home-page-order">';
-				$input .= $inactive;
-				$input .= '</ul>';
-			endif;
-		endif;
-		echo $input;
+			endforeach; ?>
+		</ul>
+
+		<?php if( count( $order_options ) != count( $active_order ) ) : ?>
+			<h2 class="home-page-order"><?php _e( 'In-Active', 'launchpad' ); ?></h2>
+			<ul class="home-page-order">
+			<?php foreach( $order_options as $value => $label ) :
+
+				if( !array_key_exists( $value , $active_order ) ) : ?>
+					<li>
+						<label for="<?php echo esc_attr( $value ); ?>">
+							<?php echo $label; ?>
+							<input disabled type="checkbox" id="<?php echo esc_attr( $value ); ?>" name="apollo_order_options[<?php echo esc_attr( $value ); ?>]" value="<?php echo esc_attr( $label ); ?>" />
+						</label>
+					</li>
+				<?php endif;
+
+			endforeach; ?>
+			</ul>
+		<?php endif;
 
 	}
 
-	function apollo_input($args) {
+	function apollo_input( $args ) {
 
 		// First, we read the options collection
 		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'display';
@@ -541,109 +552,128 @@
 		$excerpt = ( isset( $args[ 'excerpt' ] ) ? $args[ 'excerpt' ] : '' );
 
 
-		if($type == "checkbox" && isset($options[$id])) :
-			$value = "1";
-		elseif( isset($options[$id])) :
-			$value = $options[$id];
+		if( $type == "checkbox" && isset( $options[ $id ] ) ) :
+			$value = TRUE;
+		elseif( isset( $options[ $id ] ) ) :
+			$value = $options[ $id ];
 		else :
 			$value = $default;
 		endif;
 
 		if ($type == "checkbox") :
+
 			$checked = '';
-			if(isset($options[$id])) { $checked = 'checked="checked"'; };
-			$input = '<input type="checkbox" id="' . $id . '" name="' . $option . '[' . $id . ']" ' . $checked . '/>';
-		elseif ($type == "file") :
+
+			if( isset( $options[ $id ] ) ) $checked = 'checked="checked"'; ?>
+
+			<input disabled type="checkbox" id="<?php echo $id; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" <?php echo $checked; ?> />
+		<?php elseif ($type == "file") :
 
 			$checked = '';
 			$count = 0;
 			$selected = 0;
 			$images = "";
 			$uploaded = array();
-				$uploadclass='';
-			$uploaded = get_posts( array( 'post_type' => 'attachment',
-			'meta_key' => '_apollo_related_image',
-			'meta_value' => $id,
-			'orderby' => 'none',
-			'nopaging' => true ) );
+			$uploadclass='';
+
+			$uploaded = get_posts(
+				array(
+					'post_type' => 'attachment',
+					'meta_key' => '_apollo_related_image',
+					'meta_value' => $id,
+					'orderby' => 'none',
+					'nopaging' => true
+				) );
+
 			if( $value != "" ){
 				$checked = 'checked="checked"';
 			} else {
-				$uploadclass='class="no_display"';
-			}
-			$input = '<input id="clear-' . $id . '" name="" type="checkbox" ' . $checked . ' /> <label class="clear" for="clear-' . $id . '">Enable ' . $id . ' </label>';
-			$input .= '<div ' . $uploadclass . '>';
-			$input .= '<input type="file" id=upload-"' . $id . '" name="' . $id . '_file" />';
-			$input .= '<input id="no-' . $id . '" name="' . $option . '[' . $id . ']" type="radio" value="" ' . $checked . '" class="no_display" />';
-			$checked = '';
-			if(!empty($uploaded)) :
-				foreach($uploaded as $image) :
-					$full = wp_get_attachment_url($image->ID, "full");
-					$thumb = wp_get_attachment_url($image->ID, "thumb");
-					$checked = "";
-					$class = "";
-					if($value == $full){$checked .= 'checked="checked"'; $class = ' active'; $selected = $count;}
+				$uploadclass='no_display';
+			} ?>
 
-					$images .= '<li class="default-header' . $class . '">';
-						$images .= '<label>';
+			<input disabled id="clear-<?php echo $id; ?>" data-input-key="<?php echo $id; ?>" name="" type="checkbox" <?php echo $checked; ?> />
+			<label class="clear" for="clear-<?php echo $id; ?>">
+				<?php _e( 'Enable', 'launchpad' ); ?> <?php echo $id; ?>
+			</label>
 
-							$images .= '<input id="' . $id . '" name="' . $option . '[' . $id . ']" type="radio" value="' . $full . '" ' . $checked . ' class="no_display" />';
-							$images .= '<img src="' . $thumb . '" alt="" title="" />';
-						$images .= '</label>';
-					$images .= '</li>';
-					$count++;
-				endforeach;
+			<div id="<?php echo $id; ?>-list" class="clear <?php echo $uploadclass; ?>">
+				<input disabled type="file" id="upload-<?php echo $id; ?>" name="<?php echo $id; ?>_file" />
+				<input disabled id="no-<?php echo $id; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" type="radio" value="" <?php echo $checked; ?> class="no_display" />
+				<div class="available-headers">
+					<ul>
+						<?php if(!empty($uploaded)) :
+							foreach($uploaded as $image) :
+								$full = wp_get_attachment_url($image->ID, "full");
+								$thumb = wp_get_attachment_url($image->ID, "thumb");
+								$checked = "";
+								$class = "";
+								if($value == $full){
+									$checked = 'checked="checked"';
+									$class = ' active';
+									$selected = $count;
+								} ?>
 
-			endif;
-			if(isset($args[ 'options' ])) :
-				foreach($args[ 'options' ] as $image => $path) :
-					$checked = "";
-					$class = "";
-					if($value == $path){$checked = 'checked="checked"'; $class = ' active'; $selected = $count;}
-					$images .= '<li class="default-header' . $class . '">';
-						$images .= '<label>';
+								<li class="default-header <?php echo $class; ?>">
+									<input disabled id="<?php echo $id; ?>-<?php echo $image->ID; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" type="radio" value="<?php echo $full; ?>" <?php echo $checked; ?> class="no_display" />
+									<label for="<?php echo $id; ?>-<?php echo $image->ID; ?>">
+										<img src="<?php echo esc_attr( $thumb ); ?>" alt="" title="" />
+									</label>
+								</li>
+								<?php $count++;
+							endforeach;
 
-							$images .= '<input id="' . $id . '" name="' . $option . '[' . $id . ']" type="radio" value="' . $path . '" ' . $checked . ' class="no_display" />';
-							$images .= '<img src="' . str_replace("bg/", "bg/thumbs/", $path) . '" alt="" title="" width="150" />';
-						$images .= '</label>';
-					$images .= '</li>';
-					$count++;
-				endforeach;
+						endif;
 
-			endif;
-			if(isset($args[ 'options' ]) || !empty($uploaded)) :
-				$images = '<div class="available-headers"><ul>'.$images.'</ul></div>';
-				 /*if($count > 3)
-					$images = '<p><a href="#" class="prev">Prev</a><a href="#" class="next">Next</a></p>'.$images;*/
-			endif;
-			$input = $input.$images;
-		elseif ($type == "memo") :
-			$input = '<textarea id="' . $id . '" name="' . $option . '[' . $id . ']" cols="50" rows="5">' . $value . '</textarea>';
-		elseif ($type == "select") :
-			$options = $args[ 'options' ];
-			$input = '<select id="' . $id . '" name="' . $option . '[' . $id . ']">' ;
-			if(!empty($options)) :
-				foreach($options as $option => $option_value) :
-					$selected = '';
-					if($value == $option_value){$selected = 'selected="selected"';}
-					$input .= '<option value="' . $option_value . '" '. $selected . '>' . $option . '</option>';
-				endforeach;
-			endif;
-			$input .= '</select>';
-		else :
-			$input = '<input type="text" id="' . $id . '" name="' . $option . '[' . $id . ']" value="' . $value . '" />';
-		endif;
+						if(isset($args[ 'options' ])) :
+							foreach($args[ 'options' ] as $image => $path) :
+								$checked = "";
+								$class = "";
+								if($value == $path){
+									$checked = 'checked="checked"';
+									$class = ' active';
+									$selected = $count;
+								} ?>
+								<li class="default-header <?php echo $class; ?>">
+									<input disabled id="<?php echo $id; ?>-<?php echo $image; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" type="radio" value="<?php echo $path; ?>" <?php echo $checked; ?> class="no_display" />
+									<label for="<?php echo $id; ?>-<?php echo $image; ?>">
+										<img src="<?php echo str_replace("bg/", "bg/thumbs/", $path); ?>" alt="" title="" width="150" />
+									</label>
+								</li>
+								<?php $count++;
+							endforeach;
 
-		if(!empty($excerpt))
-			$label = '<label for="' . $id .'"> '  . $excerpt . '</label>';
+						endif; ?>
+					</ul>
+				</div>
+			</div>
+		<?php elseif ($type == "memo") : ?>
 
-		$input .= '</div>';
-		$html = $input.$label;
+			<textarea disabled id="<?php echo $id; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" cols="50" rows="5"><?php echo $value; ?></textarea>
+		<?php elseif ($type == "select") :
+			$options = $args[ 'options' ]; ?>
 
-		echo $html;
+			<select disabled id="<?php echo $id; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]">
+				<?php if( isset( $options ) ) :
+					foreach($options as $option => $option_value) :
+						$selected = '';
 
-	}
+						if($value == $option_value) $selected = 'selected="selected"'; ?>
+
+						<option value="<?php echo $option_value; ?>" <?php echo $selected; ?>><?php echo $option; ?></option>
+					<?php endforeach;
+				endif; ?>
+			</select>
+		<?php else : ?>
+
+			<input disabled type="text" id="<?php echo $id; ?>" name="<?php echo $option; ?>[<?php echo $id; ?>]" value="<?php echo $value; ?>" />
+		<?php endif;
+
+		if(!empty($excerpt)) : ?>
+			<label for="<?php echo $id; ?>"><?php echo $excerpt; ?></label>
+		<?php endif; ?>
+	<?php }
 	function handle_form($input){
+
 		$newinput = $input;
 		$files = $_FILES;
 		foreach($files as $input => $values) :
@@ -651,8 +681,9 @@
 				$id = media_handle_upload($input, 0);
 				$attachment = wp_get_attachment_image_src( $id, "full");
 				$option = 	str_replace("_file", "", $input);
-				update_post_meta($id,
-			'_apollo_related_image', $option);
+
+				update_post_meta($id, '_apollo_related_image', $option);
+
 				$newinput[$option] = $attachment[0];
 			endif;
 		endforeach;

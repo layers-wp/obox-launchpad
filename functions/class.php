@@ -89,7 +89,8 @@
 
 				wp_enqueue_script( 'ui-jquery-timepicker', plugins_url('launchpad-by-obox/js/jquery.timepicker.js'), array( 'jquery' ) );
 				wp_enqueue_script( 'jquery-checkboxes', plugins_url('launchpad-by-obox/js/jquery.checkboxes.js'), array( 'jquery' ) );
-				wp_enqueue_script( 'apollo-admin', plugins_url('launchpad-by-obox/js/admin.js'), array( 'jquery' ) );
+				wp_enqueue_script( 'apollo-admin', plugins_url('launchpad-by-obox/js/admin.js'), array( 'jquery', 'media-upload' ) );
+
 				wp_localize_script( 'apollo-admin', 'base', plugins_url('launchpad'));
 				wp_enqueue_script( 'theme-preview' );
 				add_thickbox();

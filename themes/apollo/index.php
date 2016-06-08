@@ -19,8 +19,9 @@
 	<div id="content-container">
 		<div id="content">
 			<?php $homepage = get_option( "apollo_order_options" );
+
 			if(!empty($homepage)) :
-				foreach($homepage as $item => $template) :
+				foreach($homepage as $template => $label ) :
 					get_template_part($template);
 				endforeach;
 			endif; ?>
