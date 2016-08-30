@@ -102,6 +102,9 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 == Changelog ==
 
+= 1.0.12 =
+* Added the option to insert custom text/HTML to the page.
+
 = 1.0.11 =
 * Fixed the home page order selector
 * Fixed admin styling (radio buttons)
