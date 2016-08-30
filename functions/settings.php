@@ -214,7 +214,18 @@
 				'excerpt' => 'If you have a video, enter it\'s URL here.'
 			)
 		);
-
+		
+		add_settings_field(
+			'custom_html',
+			'Enter your Message here', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings',
+			array(
+				'name' => 'custom_html',
+				'type' => 'memo',
+				'excerpt' => 'Enter your custom message in text/html here, to style the content of this field you can make your changes by editing the class .custom_html in the custom CSS tab. '
+			)
+		);
 		add_settings_field(
 			'subscription_embed',
 			'Newsletter Embed Code', array(&$this, 'apollo_input'),
@@ -459,6 +470,7 @@
 				'count-down-timer' => 'Count Down Timer',
 				'video' => 'Video',
 				'welcome' => 'Secondary Title &amp; Intro',
+				'custom' => 'Your custom text/HTML',
 				'subs-form' => 'Email Subscription Form',
 				'social-links' => 'Social Links'
 			)
