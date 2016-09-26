@@ -92,6 +92,7 @@
 				wp_enqueue_script( 'apollo-admin', LAUNCHPADURI . '/js/admin.js' , array( 'jquery', 'media-upload' ) );
 
 				wp_localize_script( 'apollo-admin', 'base', LAUNCHPADURI );
+
 				wp_enqueue_script( 'theme-preview' );
 				add_thickbox();
 
@@ -99,6 +100,7 @@
 				wp_enqueue_style( 'apollo-admin', LAUNCHPADURI . '/css/admin.css' );
 				wp_register_style( 'ui-jquery-style', LAUNCHPADURI . '/css/jquery-ui.css' );
 				wp_register_style( 'jquery-checkbox', LAUNCHPADURI . '/css/checkboxes.css' );
+
 
 				wp_enqueue_style( 'apollo-admin' );
 				wp_enqueue_style( 'ui-jquery-style' );
@@ -109,8 +111,10 @@
 		// Front end scripts
 		elseif( !( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) ) :
 			$apollo_options =  get_option("apollo_display_options");
+
 			wp_enqueue_script( "countdown-jquery", LAUNCHPADURI . '/js/jquery.countdown.js', array( "jquery" ) );
  			wp_enqueue_script( "apollo", LAUNCHPADURI . '/js/jquery.apollo.js' , array( "jquery" ) );
+
 			$date_launch = date("F d, Y G:i:s", strtotime($apollo_options["launchdate"]));
 			$date_now = date("F d, Y G:i:s", current_time('timestamp') );
 			wp_localize_script( "apollo", "launchpad", array( 'date_launch' => $date_launch, 'date_now' => $date_now ) );
@@ -127,10 +131,10 @@
 		if( is_admin() ) :
 			if(isset($_REQUEST['page']) && $_REQUEST['page'] == "apollo_general_settings") :
 				// Styles
+
 				wp_register_style( 'apollo-admin', LAUNCHPADURI . '/css/admin.css' );
 				wp_register_style( 'ui-jquery-style', LAUNCHPADURI . '/css/jquery-ui.css' );
 				wp_register_style( 'jquery-checkbox', LAUNCHPADURI . '/css/checkboxes.css' );
-
 				wp_enqueue_style( 'apollo-admin' );
 				wp_enqueue_style( 'ui-jquery-style' );
 				wp_enqueue_style( 'jquery-checkbox' );
