@@ -1,0 +1,27 @@
+/*-------------------------------------------------------------------------------------------*/
+/*- MEDIA QUERIES ---------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------*/
+/* layouts smaller than 600px, iPhone and mobiles */
+@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+	html {-webkit-text-size-adjust: none;}
+	body{padding: 30px 10px;}
+	
+	.timer li{width: 48%; margin-bottom: 10px;}
+	.timer li strong{padding: 30px 10px; font-size: 40px; font-weight: 400; }
+	.timer li small{font-size: 10px;}
+	
+	.logo h1{line-height: 1em;}
+	
+	.copy{padding: 5px 0px;}
+	
+	.subscribe-form input[type=text]{clear: both; float: none; width: 100%; padding: 10px 0px; margin: 0px 0px 5px; border-radius: 3px;}
+	.subscribe-form input[type=submit]{clear: both; float: none; padding: 0px 5%; width: 100%; height: 40px; border-radius: 3px;}	
+}
+
+/*---------------*/
+/* iPad PORTRAIT */
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+
+}
