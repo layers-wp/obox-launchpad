@@ -33,12 +33,12 @@
 	}
 
 	function template_dir(){
-		$template_path = LAUNCHPADDIR."themes";
+		$template_path = LAUNCHPADDIR."/themes";
 		return $template_path;
 	}
 
 	function template_uri(){
-		$template_path = plugins_url("launchpad-by-obox/")."themes";
+		$template_path = LAUNCHPADURI."/themes";
 		return $template_path;
 	}
 
@@ -87,7 +87,7 @@
 				wp_enqueue_script( 'jquery-ui-datepicker' );
 				wp_enqueue_script( 'jquery-ui-slider' );
 
-				wp_enqueue_script( 'ui-jquery-timepicker', LAUNCHPADURI . '/jquery.timepicker.js', array( 'jquery' ) );
+				wp_enqueue_script( 'ui-jquery-timepicker', LAUNCHPADURI . '/js/jquery.timepicker.js', array( 'jquery' ) );
 				wp_enqueue_script( 'jquery-checkboxes', LAUNCHPADURI . '/js/jquery.checkboxes.js', array( 'jquery' ) );
 				wp_enqueue_script( 'apollo-admin', LAUNCHPADURI . '/js/admin.js' , array( 'jquery', 'media-upload' ) );
 
